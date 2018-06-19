@@ -9,5 +9,6 @@
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/junit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/sax2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/thumbelina.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/Benjamin/OneDrive/Documents v2/2017 Summer research/Github/HyFlex/chesc.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
