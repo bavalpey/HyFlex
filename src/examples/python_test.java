@@ -56,6 +56,7 @@ public class python_test {
 				linecount++;
 				line = bf.readLine().trim();
 			}
+			bf.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

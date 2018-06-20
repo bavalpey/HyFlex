@@ -1,14 +1,8 @@
 package examples;
 import AbstractClasses.HyperHeuristic;
-import org.htmlparser.*;
 import AbstractClasses.ProblemDomain;
 import PersonnelScheduling.PersonnelScheduling;
 
-/**
- * This class shows how to run a selected hyper-heuristic on a selected problem domain.
- * It shows the minimum that must be done to test a hyper heuristic on a problem domain, and it is 
- * intended to be read before the ExampleRun2 class, which provides an example of a more complex set-up
- */
 public class ExampleRun4 {
 
 	public static void main(String[] args) {
