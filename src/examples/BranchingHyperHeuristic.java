@@ -3,8 +3,10 @@ package examples;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
+
 
 
 /*
@@ -14,7 +16,6 @@ After a specific number of levels, the heuristic will stop, and the sequence of 
 */
 public class BranchingHyperHeuristic extends HyperHeuristic {
 
-	static int currentMemoryIndex = 0;
 	static String filename;
 	static int number_of_heuristics;
 	/**
@@ -26,25 +27,18 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 //		initialize filename to use
 	}
 
-	
-	private void ApplyHeuristicToProblem(ProblemDomain problem, int n, StringBuilder sb, PrintWriter pw, double score, int soluitionIndex) {
-		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
-		int test;
+	@SuppressWarnings("unused")
+	private void ApplyHeuristicToProblem(ProblemDomain problem, int n, StringBuilder sb, PrintWriter pw, double score) {
 		if(n==0) { // if we are 10 levels deep
 			sb.append(score); // write the score at the end
 			sb.append('\n');
 			pw.write(sb.toString());
 			return;
 		}else {
-			
-		ProblemDomain problem1= problem, problem2 = problem, problem3 = problem;
-		
-		StringBuilder sb1= new StringBuilder(sb), sb2= new StringBuilder(sb), sb3 = new StringBuilder(sb);
-		
+		ProblemDomain problem1=problem, problem2=problem, problem3 = problem;
+		StringBuilder sb1=sb, sb2=sb, sb3 = sb;
 		int randH1, randH2=-1, randH3=-1;
-		
 		double score1, score2, score3;
-		
 		randH1 = rng.nextInt(number_of_heuristics);
 		while (randH1 != randH2 && randH2 != -1) {
 			randH2 = rng.nextInt();
@@ -52,21 +46,15 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		while (randH1 != randH3 && randH2 != randH3 && randH3 != -1) {
 			randH3 = rng.nextInt();
 		}
-		int pos1 = currentMemoryIndex;
-		currentMemoryIndex++;
-		int pos2 = currentMemoryIndex;
-		currentMemoryIndex++;
-		int pos3 = currentMemoryIndex;
-		currentMemoryIndex++;
-		score1 = problem1.applyHeuristic(randH1, soluitionIndex, pos1);
-		score2 = problem2.applyHeuristic(randH2, soluitionIndex, pos2);
-		score3 = problem3.applyHeuristic(randH3, soluitionIndex, pos3);
+		score1 = problem1.applyHeuristic(randH1, 1, 1);
+		score2 = problem2.applyHeuristic(randH2, 2, 2);
+		score3 = problem3.applyHeuristic(randH3, 3, 3);
 		sb1.append(randH1); sb1.append(',');
 		sb2.append(randH2); sb2.append(',');
 		sb3.append(randH3); sb3.append(',');
-		ApplyHeuristicToProblem(problem1, n-1, sb1, pw,score1,pos1);
-		ApplyHeuristicToProblem(problem2, n-1, sb2, pw,score2,pos2);
-		ApplyHeuristicToProblem(problem3, n-1, sb3, pw,score3,pos3);
+		ApplyHeuristicToProblem(problem1, n-1, sb1, pw,score1);
+		ApplyHeuristicToProblem(problem2, n-1, sb2, pw,score2);
+		ApplyHeuristicToProblem(problem3, n-1, sb3, pw,score3);
 		return;
 		}
 	}
@@ -83,8 +71,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
-		currentMemoryIndex++;
-		problem.setMemorySize(59049);
+		problem.setMemorySize(4);
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
 		PrintWriter pw = null;
 		try {
@@ -94,7 +81,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			e.printStackTrace();
 		}
 		StringBuilder sb = new StringBuilder();
-		ApplyHeuristicToProblem(problem,10,sb,pw,Double.POSITIVE_INFINITY,0);
+		ApplyHeuristicToProblem(problem,10,sb,pw,Double.POSITIVE_INFINITY);
 		pw.close();
 	}
 

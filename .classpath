@@ -5,6 +5,7 @@
 	<classpathentry kind="lib" path="C:/Users/baval/OneDrive/Documents v2/2017 Summer research/chesec/chesc.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/filterbuilder.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/htmllexer.jar"/>
+	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/htmlparser.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/junit.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/sax2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/baval/Downloads/Installers/htmlparser1_6/lib/thumbelina.jar"/>
