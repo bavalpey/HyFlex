@@ -17,7 +17,7 @@ public class BranchingRun1 {
 		
 		String filename = "V1_data/branch1.csv";
 		//creates an ExampleHyperHeuristic object with a seed for the random number generator
-		HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(1234,filename);
+		HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(1234,filename,5);
 
 		//we must load an instance within the problem domain, in this case we choose instance 2
 		problem.loadInstance(9);

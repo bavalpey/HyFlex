@@ -17,12 +17,14 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 	static int currentMemoryIndex = 0;
 	static String filename;
 	static int number_of_heuristics;
+	static int depth;
 	/**
 	 * creates a new ExampleHyperHeuristic object with a random seed
 	 */
-	public BranchingHyperHeuristic(long seed, String name){
+	public BranchingHyperHeuristic(long seed, String name,int d){
 		super(seed);
 		filename = name;
+		depth = d;
 //		initialize filename to use
 	}
 
@@ -81,7 +83,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
 		currentMemoryIndex++;
-		problem.setMemorySize(59049);
+		problem.setMemorySize((int) Math.pow(3,depth+1)+1);
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
 		PrintWriter pw = null;
 		try {
@@ -91,7 +93,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			e.printStackTrace();
 		}
 		StringBuilder sb = new StringBuilder();
-		ApplyHeuristicToProblem(problem,10,sb,pw,Double.POSITIVE_INFINITY,0);
+		ApplyHeuristicToProblem(problem,depth,sb,pw,Double.POSITIVE_INFINITY,0);
 		pw.close();
 	}
 
