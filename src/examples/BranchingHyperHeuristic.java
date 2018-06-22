@@ -57,7 +57,6 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		currentMemoryIndex++;
 		int pos3 = currentMemoryIndex;
 		currentMemoryIndex++;
-		System.out.println(randH1+","+randH2);
 		score1 = problem1.applyHeuristic(randH1, soluitionIndex, pos1);
 		score2 = problem2.applyHeuristic(randH2, soluitionIndex, pos2);
 		score3 = problem3.applyHeuristic(randH3, soluitionIndex, pos3);
