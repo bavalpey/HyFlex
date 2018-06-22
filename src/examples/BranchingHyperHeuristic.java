@@ -3,10 +3,8 @@ package examples;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
-
 
 
 /*
@@ -27,8 +25,10 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 //		initialize filename to use
 	}
 
-	@SuppressWarnings("unused")
+	
 	private void ApplyHeuristicToProblem(ProblemDomain problem, int n, StringBuilder sb, PrintWriter pw, double score) {
+		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
+		
 		if(n==0) { // if we are 10 levels deep
 			sb.append(score); // write the score at the end
 			sb.append('\n');
