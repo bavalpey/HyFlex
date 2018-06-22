@@ -46,9 +46,9 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		while (randH1 != randH3 && randH2 != randH3 && randH3 != -1) {
 			randH3 = rng.nextInt();
 		}
-		score1 = problem1.applyHeuristic(randH1, 1, 1);
-		score2 = problem2.applyHeuristic(randH2, 2, 2);
-		score3 = problem3.applyHeuristic(randH3, 3, 3);
+		score1 = problem1.applyHeuristic(randH1, 0, 0);
+		score2 = problem2.applyHeuristic(randH2, 0, 0);
+		score3 = problem3.applyHeuristic(randH3, 0, 0);
 		sb1.append(randH1); sb1.append(',');
 		sb2.append(randH2); sb2.append(',');
 		sb3.append(randH3); sb3.append(',');
@@ -71,7 +71,6 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
-		problem.setMemorySize(4);
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
 		PrintWriter pw = null;
 		try {
