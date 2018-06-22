@@ -36,8 +36,6 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			pw.write(sb.toString());
 			return;
 		}else {
-			
-		ProblemDomain problem1= problem, problem2 = problem, problem3 = problem;
 		
 		StringBuilder sb1= new StringBuilder(sb), sb2= new StringBuilder(sb), sb3 = new StringBuilder(sb);
 		
@@ -57,15 +55,15 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		currentMemoryIndex++;
 		int pos3 = currentMemoryIndex;
 		currentMemoryIndex++;
-		score1 = problem1.applyHeuristic(randH1, soluitionIndex, pos1);
-		score2 = problem2.applyHeuristic(randH2, soluitionIndex, pos2);
-		score3 = problem3.applyHeuristic(randH3, soluitionIndex, pos3);
+		score1 = problem.applyHeuristic(randH1, soluitionIndex, pos1);
+		score2 = problem.applyHeuristic(randH2, soluitionIndex, pos2);
+		score3 = problem.applyHeuristic(randH3, soluitionIndex, pos3);
 		sb1.append(randH1); sb1.append(',');
 		sb2.append(randH2); sb2.append(',');
 		sb3.append(randH3); sb3.append(',');
-		ApplyHeuristicToProblem(problem1, n-1, sb1, pw,score1,pos1);
-		ApplyHeuristicToProblem(problem2, n-1, sb2, pw,score2,pos2);
-		ApplyHeuristicToProblem(problem3, n-1, sb3, pw,score3,pos3);
+		ApplyHeuristicToProblem(problem, n-1, sb1, pw,score1,pos1);
+		ApplyHeuristicToProblem(problem, n-1, sb2, pw,score2,pos2);
+		ApplyHeuristicToProblem(problem, n-1, sb3, pw,score3,pos3);
 		return;
 		}
 	}
