@@ -125,6 +125,6 @@ public class ExampleHyperHeuristic5 extends HyperHeuristic {
 	 * @return a string representing the name of the hyper-heuristic
 	 */
 	public String toString() {
-		return "Example Hyper Heuristic One";
+		return "Example Hyper Heuristic Five";
 	}
 }
