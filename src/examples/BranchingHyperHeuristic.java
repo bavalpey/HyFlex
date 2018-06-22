@@ -35,10 +35,15 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			pw.write(sb.toString());
 			return;
 		}else {
-		ProblemDomain problem1=problem, problem2=problem, problem3 = problem;
-		StringBuilder sb1=sb, sb2=sb, sb3 = sb;
+			
+		ProblemDomain problem1= problem, problem2 = problem, problem3 = problem;
+		
+		StringBuilder sb1= new StringBuilder(sb), sb2= new StringBuilder(sb), sb3 = new StringBuilder(sb);
+		
 		int randH1, randH2=-1, randH3=-1;
+		
 		double score1, score2, score3;
+		
 		randH1 = rng.nextInt(number_of_heuristics);
 		while (randH1 != randH2 && randH2 != -1) {
 			randH2 = rng.nextInt();
