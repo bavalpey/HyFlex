@@ -13,13 +13,12 @@ public class ExampleRun5 {
 	public static void main(String[] args) {
 
 		//create a ProblemDomain object with a seed for the random number generator
-		ProblemDomain problem = new PersonnelScheduling(-1);
-		
+		ProblemDomain problem = new PersonnelScheduling(1234);
 		int instances = problem.getNumberOfInstances();
-		for(int i=0;i<instances;i++) {
-			String filename = "instance" + i + ".csv";
+		for(int i = 0;i<instances;i++) {
+			String filename = "instance"+i+".csv";
 			//creates an ExampleHyperHeuristic object with a seed for the random number generator
-			HyperHeuristic hyper_heuristic_object = new ExampleHyperHeuristic5(-1,filename);
+			HyperHeuristic hyper_heuristic_object = new ExampleHyperHeuristic5(1234,filename);
 	
 			//we must load an instance within the problem domain, in this case we choose instance 2
 			problem.loadInstance(i);
@@ -37,7 +36,6 @@ public class ExampleRun5 {
 	
 			//obtain the best solution found within the time limit
 			System.out.println(hyper_heuristic_object.getBestSolutionValue());
-		}
-		
+		}		
 	}
 }

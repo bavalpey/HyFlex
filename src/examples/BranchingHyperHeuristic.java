@@ -26,7 +26,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 //		initialize filename to use
 	}
 
-	
+	@SuppressWarnings("unused")
 	private void ApplyHeuristicToProblem(ProblemDomain problem, int n, StringBuilder sb, PrintWriter pw, double score, int soluitionIndex) {
 		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
 		
@@ -44,13 +44,12 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		int randH1, randH2=-1, randH3=-1;
 		
 		double score1, score2, score3;
-		
 		randH1 = rng.nextInt(number_of_heuristics);
-		while (randH1 != randH2 && randH2 != -1) {
-			randH2 = rng.nextInt();
+		while (randH1 == randH2 || randH2 == -1) {
+			randH2 = rng.nextInt(number_of_heuristics);
 		}
-		while (randH1 != randH3 && randH2 != randH3 && randH3 != -1) {
-			randH3 = rng.nextInt();
+		while (randH1 == randH3 || randH2 == randH3|| randH3 == -1) {
+			randH3 = rng.nextInt(number_of_heuristics);
 		}
 		int pos1 = currentMemoryIndex;
 		currentMemoryIndex++;
@@ -58,6 +57,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		currentMemoryIndex++;
 		int pos3 = currentMemoryIndex;
 		currentMemoryIndex++;
+		System.out.println(randH1+","+randH2);
 		score1 = problem1.applyHeuristic(randH1, soluitionIndex, pos1);
 		score2 = problem2.applyHeuristic(randH2, soluitionIndex, pos2);
 		score3 = problem3.applyHeuristic(randH3, soluitionIndex, pos3);
