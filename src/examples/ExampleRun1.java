@@ -35,5 +35,7 @@ public class ExampleRun1 {
 
 		//obtain the best solution found within the time limit
 		System.out.println(hyper_heuristic_object.getBestSolutionValue());
+		
+		System.out.println(problem.getHeuristicsThatUseDepthOfSearch());
 	}
 }

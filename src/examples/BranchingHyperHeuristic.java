@@ -36,6 +36,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			sb.append(score); // write the score at the end
 			sb.append('\n');
 			pw.write(sb.toString());
+			
 			return;
 		}else {
 //		sb.append(score+','); // uncomment this to keep track of the score at each level
@@ -66,7 +67,15 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		sb3.append(randH3); sb3.append(',');
 		try {
 			ApplyHeuristicToProblem(n-1, sb1, pw,score1,pos1);
+		} catch (OutOfMemoryError e){
+			System.out.println("Current memory index: " + currentMemoryIndex);
+			}
+		try {
 			ApplyHeuristicToProblem(n-1, sb2, pw,score2,pos2);
+		} catch (OutOfMemoryError e){
+			System.out.println("Current memory index: " + currentMemoryIndex);
+			}
+		try {
 			ApplyHeuristicToProblem(n-1, sb3, pw,score3,pos3);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + currentMemoryIndex);
@@ -96,7 +105,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			pw = new PrintWriter(new File(filename));
 			StringBuilder header = new StringBuilder();
 			for(int i=0;i<depth;i++) {
-				header.append('h'+i+',');
+				header.append("h"+i+",");
 //				header.append('s'+i+','); // uncomment this to keep keep track of the score at each level
 			}
 			header.append("Final Score\n");
@@ -111,6 +120,9 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		hasTimeExpired();
 	}
 
+	
+	/*To get around the memory problem, only start expanding solutions after a certain point.  In other words,
+	 * first choose 3-5 heuristics, and then start randomly choosing heuristics based off that.*/
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
