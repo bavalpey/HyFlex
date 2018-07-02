@@ -13,7 +13,7 @@ The heuristic chosen at each level will be completely random
 After a specific number of levels, the heuristic will stop, and the sequence of heuristics will be written to a file, along with the objective score.
 */
 public class BranchingHyperHeuristic extends HyperHeuristic {
-
+	static ProblemDomain problem;
 	static int currentMemoryIndex = 0;
 	static String filename;
 	static int number_of_heuristics;
@@ -29,7 +29,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 	}
 
 	@SuppressWarnings("unused")
-	private void ApplyHeuristicToProblem(ProblemDomain problem, int n, StringBuilder sb, PrintWriter pw, double score, int soluitionIndex) {
+	private void ApplyHeuristicToProblem(int n, StringBuilder sb, PrintWriter pw, double score, int soluitionIndex) {
 		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
 		
 		if(n==0) { // if we are 10 levels deep
@@ -38,7 +38,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			pw.write(sb.toString());
 			return;
 		}else {
-		
+//		sb.append(score+','); // uncomment this to keep track of the score at each level
 		StringBuilder sb1= new StringBuilder(sb), sb2= new StringBuilder(sb), sb3 = new StringBuilder(sb);
 		
 		int randH1, randH2=-1, randH3=-1;
@@ -60,41 +60,55 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		score1 = problem.applyHeuristic(randH1, soluitionIndex, pos1);
 		score2 = problem.applyHeuristic(randH2, soluitionIndex, pos2);
 		score3 = problem.applyHeuristic(randH3, soluitionIndex, pos3);
+
 		sb1.append(randH1); sb1.append(',');
 		sb2.append(randH2); sb2.append(',');
 		sb3.append(randH3); sb3.append(',');
-		ApplyHeuristicToProblem(problem, n-1, sb1, pw,score1,pos1);
-		ApplyHeuristicToProblem(problem, n-1, sb2, pw,score2,pos2);
-		ApplyHeuristicToProblem(problem, n-1, sb3, pw,score3,pos3);
+		try {
+			ApplyHeuristicToProblem(n-1, sb1, pw,score1,pos1);
+			ApplyHeuristicToProblem(n-1, sb2, pw,score2,pos2);
+			ApplyHeuristicToProblem(n-1, sb3, pw,score3,pos3);
+		} catch (OutOfMemoryError e){
+			System.out.println("Current memory index: " + currentMemoryIndex);
+			}
+		
+		
 		return;
 		}
 	}
 	/**
 	 * This method defines the strategy of the hyper-heuristic
-	 * @param problem the problem domain to be solved
+	 * @param problem1 the problem domain to be solved
 	 */
-	public void solve(ProblemDomain problem) {
-
+	public void solve(ProblemDomain problem1) {
+		problem = problem1;
 		//it is often a good idea to record the number of low level heuristics, as this changes depending on the problem domain
 		number_of_heuristics = problem.getNumberOfHeuristics();
-
-		//initialise the variable which keeps track of the current objective function value
-
+		
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
+		problem.setMemorySize((int) Math.pow(3, depth+1)+1);
 		currentMemoryIndex++;
-		problem.setMemorySize((int) Math.pow(3,depth+1)+1);
+		
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
 		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new File(filename));
+			StringBuilder header = new StringBuilder();
+			for(int i=0;i<depth;i++) {
+				header.append('h'+i+',');
+//				header.append('s'+i+','); // uncomment this to keep keep track of the score at each level
+			}
+			header.append("Final Score\n");
+			pw.write(header.toString());
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		StringBuilder sb = new StringBuilder();
-		ApplyHeuristicToProblem(problem,depth,sb,pw,Double.POSITIVE_INFINITY,0);
+		ApplyHeuristicToProblem(depth,sb,pw,Double.POSITIVE_INFINITY,0);
 		pw.close();
+		hasTimeExpired();
 	}
 
 	@Override
