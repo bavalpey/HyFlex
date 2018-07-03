@@ -20,6 +20,7 @@ def main():
         data = data[data[col] == int(args[i-1])]
     # data3.sort_values(by='Final Score')[len(lst)+1,axis=1]
     results = data.sort_values('Final Score')
+    print(results[:len(args)+1])
 
 
 main()
