@@ -22,7 +22,6 @@ public class RandomHeuristic extends HyperHeuristic {
 		int number_of_heuristics = problem.getNumberOfHeuristics();
 
 		//initialise the variable which keeps track of the current objective function value
-		double current_obj_function_value = Double.POSITIVE_INFINITY;
 
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
