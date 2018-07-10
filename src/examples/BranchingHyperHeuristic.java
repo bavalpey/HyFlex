@@ -29,7 +29,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 	}
 
 	@SuppressWarnings("unused")
-	private void ApplyHeuristicToProblem(int n, StringBuilder sb, PrintWriter pw, double score, int soluitionIndex) {
+	private void ApplyHeuristicToProblem(int n, StringBuilder sb, PrintWriter pw, double score, int solutionIndex) {
 		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
 		
 		if(n==0) { // if we are 10 levels deep
@@ -58,9 +58,9 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		currentMemoryIndex++;
 		int pos3 = currentMemoryIndex;
 		currentMemoryIndex++;
-		score1 = problem.applyHeuristic(randH1, soluitionIndex, pos1);
-		score2 = problem.applyHeuristic(randH2, soluitionIndex, pos2);
-		score3 = problem.applyHeuristic(randH3, soluitionIndex, pos3);
+		score1 = problem.applyHeuristic(randH1, solutionIndex, pos1);
+		score2 = problem.applyHeuristic(randH2, solutionIndex, pos2);
+		score3 = problem.applyHeuristic(randH3, solutionIndex, pos3);
 
 		sb1.append(randH1); sb1.append(',');
 		sb2.append(randH2); sb2.append(',');
@@ -68,17 +68,20 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		try {
 			ApplyHeuristicToProblem(n-1, sb1, pw,score1,pos1);
 		} catch (OutOfMemoryError e){
-			System.out.println("Current memory index: " + currentMemoryIndex);
+			System.out.println("Current memory index: " + (currentMemoryIndex-2));
+			System.out.println("n is: " + n);
 			}
 		try {
 			ApplyHeuristicToProblem(n-1, sb2, pw,score2,pos2);
 		} catch (OutOfMemoryError e){
-			System.out.println("Current memory index: " + currentMemoryIndex);
+			System.out.println("Current memory index: " + (currentMemoryIndex-1));
+			System.out.println("n is: " + n);
 			}
 		try {
 			ApplyHeuristicToProblem(n-1, sb3, pw,score3,pos3);
 		} catch (OutOfMemoryError e){
-			System.out.println("Current memory index: " + currentMemoryIndex);
+			System.out.println("Current memory index: " + (currentMemoryIndex));
+			System.out.println("n is: " + n);
 			}
 		
 		

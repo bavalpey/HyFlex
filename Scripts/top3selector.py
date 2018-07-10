@@ -1,7 +1,5 @@
-import pandas as pd
 import os
 import pandas as pd
-
 
 # have the depth as a parameter..
 # have a singular program to generate data
@@ -20,7 +18,11 @@ def main():
         data = data[data[col] == int(args[i-1])]
     # data3.sort_values(by='Final Score')[len(lst)+1,axis=1]
     results = data.sort_values('Final Score')
-    print(results[:len(args)+1])
+
+
+
+    print(results)
+    print(results.iloc[:3,len(args)])
 
 
 main()
