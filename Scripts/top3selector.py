@@ -7,21 +7,27 @@ import pandas as pd
 
 def main():
     os.chdir(r'C:\\Users\\Lab\\Documents\\Git\\HyFlex\\V1_data')
-    filename = 'branch1.csv'
     argumentsFile = 'argsfile.txt'
-    data = pd.read_csv(filename,header=None,names=["h1","h2","h3","h4","h5","Final Score"])
+    data1 = pd.read_csv('branch1.csv',header=None,names=["h1","h2","h3","h4","h5","Final Score"])
+    data2 = pd.read_csv('branch2.csv',header=None,names=["h1","h2","h3","h4","h5","Final Score"])
+    data3 = pd.read_csv('branch3.csv',header=None,names=["h1","h2","h3","h4","h5","Final Score"])
+    data4 = pd.read_csv('branch4.csv',header=None,names=["h1","h2","h3","h4","h5","Final Score"])
+    data = pd.concat([data1,data2,data3,data4])
     argsFile = open(argumentsFile,'r')
-    print(data)
     args = argsFile.readline().rstrip('\n').split(',')
+    results = data.sort_values('Final Score')
+    print(results[:3])
+    
     for i in range(1,len(args)+1):
         col = 'h' + str(i)
         data = data[data[col] == int(args[i-1])]
     # data3.sort_values(by='Final Score')[len(lst)+1,axis=1]
     results = data.sort_values('Final Score')
+    print(results)
     argsFile.close()
-    outFile = open('top3.csv','w')
-    for item in results.iloc[:3,len(args)]:
-        outFile.write(item + ',')
-    outFile.close()
+    # outFile = open('top3.txt','w')
+    for item in zip(results.iloc[:3,len(args)],results.iloc[:3,len(args)+1]):
+        print(item)
+    # outFile.close()
 
 main()
