@@ -3,7 +3,7 @@ package examples;
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
 
-public class ExampleHyperHeuristic4 extends HyperHeuristic{
+public class OnlineHeuristic extends HyperHeuristic{
 	private int[] sumArray(int[] array) {
 		int[] to_return = {0,0,0,0,0,0,0,0,0,0,0,0};
 		int sum = 0;
@@ -29,7 +29,7 @@ public class ExampleHyperHeuristic4 extends HyperHeuristic{
 		return -1;
 	}
 	
-	public ExampleHyperHeuristic4(long seed){
+	public OnlineHeuristic(long seed){
 		super(seed);
 	}
 	
@@ -61,7 +61,7 @@ public class ExampleHyperHeuristic4 extends HyperHeuristic{
 	}
 	
 	public String toString() {
-		return "Example Hyper Heuristic One";
+		return "Online Heuristic with Probability Vector";
 	}
 	
 }

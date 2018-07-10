@@ -17,14 +17,14 @@ public class BranchingRun1 {
 		//create a ProblemDomain object with a seed for the random number generator
 		ProblemDomain problem = new PersonnelScheduling(1234);
 		
-		String filename = "V1_data/7branch";
+		String filename = "V1_data/branch";
 		int filecounter = 1;
 		while(new File(filename+filecounter+".csv").isFile()) {
 			filecounter++;
 		}
 		filename = filename + filecounter + ".csv";
 		//creates an ExampleHyperHeuristic object with a seed for the random number generator
-		HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(1234,filename,7);
+		HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(1234,filename,5);
 
 		//we must load an instance within the problem domain, in this case we choose instance 2
 		problem.loadInstance(9);

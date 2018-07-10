@@ -18,16 +18,16 @@ def main():
     results = data.sort_values('Final Score')
     print(results[:3])
     
-    for i in range(1,len(args)+1):
+    for i in range(1,len(args)+1): # will get the heuristics that follow the exact sequence listed here
         col = 'h' + str(i)
         data = data[data[col] == int(args[i-1])]
-    # data3.sort_values(by='Final Score')[len(lst)+1,axis=1]
+
     results = data.sort_values('Final Score')
     print(results)
     argsFile.close()
-    # outFile = open('top3.txt','w')
+    outFile = open('top3.txt','w')
     for item in zip(results.iloc[:3,len(args)],results.iloc[:3,len(args)+1]):
-        print(item)
-    # outFile.close()
+        outFile.write(item[0]+","+item[1]+"\n")
+    outFile.close()
 
 main()

@@ -12,7 +12,7 @@ public class ExampleRun4 {
 		
 
 		//creates an ExampleHyperHeuristic object with a seed for the random number generator
-		HyperHeuristic hyper_heuristic_object = new ExampleHyperHeuristic4(5678);
+		HyperHeuristic hyper_heuristic_object = new OnlineHeuristic(5678);
 
 		//we must load an instance within the problem domain, in this case we choose instance 2
 		problem.loadInstance(2);

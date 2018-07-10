@@ -21,12 +21,14 @@ public class LearningHeuristic extends HyperHeuristic {
 		
 	}
 
+	@SuppressWarnings("unused")
 	@Override
 	protected void solve(ProblemDomain problem) {
 		// TODO Auto-generated method stub
 		int number_of_heuristics = problem.getNumberOfHeuristics();
 		double current_obj_function_value = Double.POSITIVE_INFINITY;
 		problem.initialiseSolution(0);
+		problem.setMemorySize(5);
 		PrintWriter pw;
 		try {
 			pw = new PrintWriter(new File("V1_data/argsFile.txt"));
@@ -62,7 +64,7 @@ public class LearningHeuristic extends HyperHeuristic {
 			pw.close();
 			try {
 				Process p = Runtime.getRuntime()
-						.exec("python \"C:\\Users\\baval\\Documents\\Eclipse\\HyFlex\\Scripts\\top3selector.py"); // runs the Python code located at the file path
+						.exec("python \"C:\\Users\\Lab\\Documents\\Git\\HyFlex\\Scripts\\top3selector.py"); // runs the Python code located at the file path
 		        p.waitFor();
 		        p.destroy();
 		        
@@ -77,8 +79,24 @@ public class LearningHeuristic extends HyperHeuristic {
 		
 			
 			BufferedReader fr = new BufferedReader(new FileReader("V1_data/top3.txt"));
-			String line;
-			line = fr.readLine();
+			String[] seq1 = fr.readLine().split(","); 
+			String[] seq2 = fr.readLine().split(","); 
+			String[] seq3 = fr.readLine().split(",");
+			
+			problem.copySolution(0, 2);
+			problem.copySolution(0, 3);
+			problem.copySolution(0, 4);
+			
+			problem.applyHeuristic(Integer.valueOf(seq1[0]), 2, 2);
+			problem.applyHeuristic(Integer.valueOf(seq1[1]), 2, 2);
+			
+			problem.applyHeuristic(Integer.valueOf(seq2[0]), 3, 3);
+			problem.applyHeuristic(Integer.valueOf(seq2[1]), 3, 3);
+			
+			problem.applyHeuristic(Integer.valueOf(seq3[0]), 4, 4);
+			problem.applyHeuristic(Integer.valueOf(seq3[1]), 4, 4);
+			fr.close();
+			hasTimeExpired();
 			
 			
 			
