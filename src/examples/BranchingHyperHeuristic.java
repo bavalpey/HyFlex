@@ -18,6 +18,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 	static String filename;
 	static int number_of_heuristics;
 	static int depth;
+	PrintWriter pw = null;
 	/**
 	 * creates a new ExampleHyperHeuristic object with a random seed
 	 */
@@ -29,8 +30,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 	}
 
 	@SuppressWarnings("unused")
-	private void ApplyHeuristicToProblem(int n, StringBuilder sb, PrintWriter pw, double score, int solutionIndex) {
-		int processors = Runtime.getRuntime().availableProcessors(); // figure out how to use this to create threads
+	private void ApplyHeuristicToProblem(int n, StringBuilder sb, double score, int solutionIndex) {
 		
 		if(n==0) { // if we are 10 levels deep
 			sb.append(score); // write the score at the end
@@ -66,19 +66,19 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		sb2.append(randH2); sb2.append(',');
 		sb3.append(randH3); sb3.append(',');
 		try {
-			ApplyHeuristicToProblem(n-1, sb1, pw,score1,pos1);
+			ApplyHeuristicToProblem(n-1, sb1,score1,pos1);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex-2));
 			System.out.println("n is: " + n);
 			}
 		try {
-			ApplyHeuristicToProblem(n-1, sb2, pw,score2,pos2);
+			ApplyHeuristicToProblem(n-1, sb2,score2,pos2);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex-1));
 			System.out.println("n is: " + n);
 			}
 		try {
-			ApplyHeuristicToProblem(n-1, sb3, pw,score3,pos3);
+			ApplyHeuristicToProblem(n-1, sb3,score3,pos3);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex));
 			System.out.println("n is: " + n);
@@ -103,7 +103,6 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		currentMemoryIndex++;
 		
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
-		PrintWriter pw = null;
 		try {
 			pw = new PrintWriter(new File(filename));
 			StringBuilder header = new StringBuilder();
@@ -118,7 +117,7 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			e.printStackTrace();
 		}
 		StringBuilder sb = new StringBuilder();
-		ApplyHeuristicToProblem(depth,sb,pw,Double.POSITIVE_INFINITY,0);
+		ApplyHeuristicToProblem(depth,sb,Double.POSITIVE_INFINITY,0);
 		pw.close();
 		hasTimeExpired();
 	}
