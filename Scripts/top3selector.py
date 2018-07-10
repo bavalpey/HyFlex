@@ -18,11 +18,10 @@ def main():
         data = data[data[col] == int(args[i-1])]
     # data3.sort_values(by='Final Score')[len(lst)+1,axis=1]
     results = data.sort_values('Final Score')
-
-
-
-    print(results)
-    print(results.iloc[:3,len(args)])
-
+    argsFile.close()
+    outFile = open('top3.csv','w')
+    for item in results.iloc[:3,len(args)]:
+        outFile.write(item + ',')
+    outFile.close()
 
 main()
