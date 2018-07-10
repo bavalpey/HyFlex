@@ -10,10 +10,10 @@ import java.io.PrintWriter;
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
 
-public class LearningHeuristic extends HyperHeuristic {
+public class LearningHyperHeuristic extends HyperHeuristic {
 
 
-	public LearningHeuristic(long seed) {
+	public LearningHyperHeuristic(long seed) {
 		super(seed);
 		// TODO Auto-generated constructor stub
 		

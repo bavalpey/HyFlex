@@ -3,12 +3,12 @@ package examples;
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
 
-public class RandomHeuristic extends HyperHeuristic {
+public class RandomHyperHeuristic extends HyperHeuristic {
 	
 	/**
 	 * creates a new ExampleHyperHeuristic object with a random seed
 	 */
-	public RandomHeuristic(long seed){
+	public RandomHyperHeuristic(long seed){
 		super(seed);
 	}
 	
