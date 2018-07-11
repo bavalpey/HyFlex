@@ -14,8 +14,8 @@ After a specific number of levels, the heuristic will stop, and the sequence of 
 */
 public class BranchingHyperHeuristic4 extends HyperHeuristic {
 	static ProblemDomain problem;
-	static int currentMemoryIndex = 0;
-	static String filename;
+	int currentMemoryIndex = 0;
+	String filename;
 	static int number_of_heuristics;
 	static int depth;
 	PrintWriter pw = null;
@@ -30,7 +30,7 @@ public class BranchingHyperHeuristic4 extends HyperHeuristic {
 	}
 
 	@SuppressWarnings("unused")
-	private void ApplyHeuristicToProblem(int n, StringBuilder sb,double score, int solutionIndex) {
+	private void ApplyHeuristicToProblem(int n, StringBuilder sb,double score, int solutionIndex) throws ArrayIndexOutOfBoundsException{
 		
 		if(n==0) { // if we are 10 levels deep
 			sb.append(score); // write the score at the end
@@ -104,7 +104,7 @@ public class BranchingHyperHeuristic4 extends HyperHeuristic {
 	 * This method defines the strategy of the hyper-heuristic
 	 * @param problem1 the problem domain to be solved
 	 */
-	public void solve(ProblemDomain problem1) {
+	public void solve(ProblemDomain problem1) throws ArrayIndexOutOfBoundsException{
 		problem = problem1;
 		//it is often a good idea to record the number of low level heuristics, as this changes depending on the problem domain
 		number_of_heuristics = problem.getNumberOfHeuristics();
