@@ -98,11 +98,12 @@ public class LearningHyperHeuristic extends HyperHeuristic {
 			hasTimeExpired();
 			
 			
-			
 			/*Add in the next two heuristic choices from 7top3selector.py */
 			
-			
-			
+			double delta = problem.getFunctionValue(2) - problem.applyHeuristic(4, 2, 0);
+			if(delta > 0) {
+				problem.copySolution(0, 2);
+			}
 			
 		} catch (FileNotFoundException e1) {
 			System.out.println("File Read Error");
