@@ -27,7 +27,7 @@ public class RandomHyperHeuristic extends HyperHeuristic {
 		problem.initialiseSolution(0);
 		int count = 0;
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
-		while (count != 10) {
+		while (count != 5) {
 
 			//this hyper-heuristic chooses a random low level heuristic to apply
 			int heuristic_to_apply = rng.nextInt(number_of_heuristics);

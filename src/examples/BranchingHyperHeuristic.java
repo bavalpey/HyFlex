@@ -14,8 +14,8 @@ After a specific number of levels, the heuristic will stop, and the sequence of 
 */
 public class BranchingHyperHeuristic extends HyperHeuristic {
 	static ProblemDomain problem;
-	static int currentMemoryIndex = 0;
-	static String filename;
+	int currentMemoryIndex = 0;
+	String filename;
 	static int number_of_heuristics;
 	static int depth;
 	PrintWriter pw = null;
@@ -36,12 +36,12 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 			sb.append(score); // write the score at the end
 			sb.append('\n');
 			pw.write(sb.toString());
-			
+			sb = null;
 			return;
 		}else {
 //		sb.append(score+','); // uncomment this to keep track of the score at each level
 		StringBuilder sb1= new StringBuilder(sb), sb2= new StringBuilder(sb), sb3 = new StringBuilder(sb);
-		
+		sb = null; // try to deallocate this stringBuilder to free up space for the heap
 		int randH1, randH2=-1, randH3=-1;
 		
 		double score1, score2, score3;
@@ -70,19 +70,20 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex-2));
 			System.out.println("n is: " + n);
-			}
+			
+			} catch(ArrayIndexOutOfBoundsException z) {problem.setMemorySize((int) Math.pow(3+1, depth)+1);}
 		try {
 			ApplyHeuristicToProblem(n-1, sb2,score2,pos2);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex-1));
 			System.out.println("n is: " + n);
-			}
+			} catch(ArrayIndexOutOfBoundsException z) {problem.setMemorySize((int) Math.pow(3+1, depth)+1);}
 		try {
 			ApplyHeuristicToProblem(n-1, sb3,score3,pos3);
 		} catch (OutOfMemoryError e){
 			System.out.println("Current memory index: " + (currentMemoryIndex));
 			System.out.println("n is: " + n);
-			}
+			} catch(ArrayIndexOutOfBoundsException z) {problem.setMemorySize((int) Math.pow(3+1, depth)+1);}
 		
 		
 		return;
@@ -97,9 +98,9 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		//it is often a good idea to record the number of low level heuristics, as this changes depending on the problem domain
 		number_of_heuristics = problem.getNumberOfHeuristics();
 		
-		//initialise the solution at index 0 in the solution memory array
+		//Initialize the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
-		problem.setMemorySize((int) Math.pow(3, depth+1)+1);
+		problem.setMemorySize((int) Math.pow(3, depth)+8);
 		currentMemoryIndex++;
 		
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached

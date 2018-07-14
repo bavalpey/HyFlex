@@ -40,7 +40,7 @@ public class ExhaustiveHyperHeuristic extends HyperHeuristic {
 		
 		double[] scores = new double[number_of_heuristics];
 		
-		for(int j=0;j<100;j++) {
+		for(int j=0;j<5;j++) {
 			double best_delta = Double.NEGATIVE_INFINITY;
 			// heuristic ids start at 0
 			int modify_state;

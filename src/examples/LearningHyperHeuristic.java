@@ -34,7 +34,6 @@ public class LearningHyperHeuristic extends HyperHeuristic {
 			pw = new PrintWriter(new File("V1_data/argsFile.txt"));
 		
 			StringBuilder sb = new StringBuilder();
-			sb.append("h1,h2,h3\n");
 			
 			
 			
@@ -97,6 +96,11 @@ public class LearningHyperHeuristic extends HyperHeuristic {
 			problem.applyHeuristic(Integer.valueOf(seq3[1]), 4, 4);
 			fr.close();
 			hasTimeExpired();
+			
+			
+			
+			/*Add in the next two heuristic choices from 7top3selector.py */
+			
 			
 			
 			

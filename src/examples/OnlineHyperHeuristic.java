@@ -39,8 +39,8 @@ public class OnlineHyperHeuristic extends HyperHeuristic{
 		int[] h = {0,0,0,0,0,0,0,0,0,0,0,0};
 		double current_obj_function_value = Double.POSITIVE_INFINITY;
 		problem.initialiseSolution(0);
-		
-		while (!hasTimeExpired()) {
+		int cnt = 0;
+		while (cnt < 5){
 			int heuristic_to_apply = getHeuristicFromRandomNumber(rng.nextInt(cap),h);
 			double new_obj_function_value = problem.applyHeuristic(heuristic_to_apply, 0, 1);
 			
@@ -50,14 +50,17 @@ public class OnlineHyperHeuristic extends HyperHeuristic{
 				h[heuristic_to_apply]++;
 				cap++;
 				problem.copySolution(1, 0);
+				cnt++;
 				current_obj_function_value = new_obj_function_value;
 			} else {
 				if (rng.nextBoolean()) {
 					problem.copySolution(1, 0);
+					cnt++;
 					current_obj_function_value = new_obj_function_value;
 				}
 			}
 		}
+		hasTimeExpired();
 	}
 	
 	public String toString() {

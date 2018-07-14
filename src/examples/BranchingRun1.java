@@ -15,13 +15,14 @@ public class BranchingRun1 {
 	
 
 	public static void main(String[] args) {
-
-		String filename1 = "V1_data/branch";
+		ProblemDomain problem = null;
+		String filename1 = "V1_data/7branch";
 		int filecounter = 1;
+		String filename;
 		//create a ProblemDomain object with a seed for the random number generator
-		for(int ct = 0;ct<50;ct++) {
-			String filename = "V1_data/branch";
-			ProblemDomain problem = new PersonnelScheduling(1234);
+		for(int ct = 0;ct<15;ct++) {
+			
+			problem = new PersonnelScheduling(1234);
 			Random rand = new Random();
 			while(new File(filename1+filecounter+".csv").isFile()) {
 				filecounter++;
@@ -32,8 +33,8 @@ public class BranchingRun1 {
 	
 			
 			int n = rand.nextInt(999) + 1;
-			HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic4(n,filename,5);
-	
+			HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(n,filename,7);
+			filename = null;
 			//we must load an instance within the problem domain, in this case we choose instance 2
 			problem.loadInstance(9);
 	
