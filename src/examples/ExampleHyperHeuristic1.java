@@ -69,6 +69,7 @@ public class ExampleHyperHeuristic1 extends HyperHeuristic {
 		//initialise the solution at index 0 in the solution memory array
 		problem.initialiseSolution(0);
 
+
 		//the main loop of any hyper-heuristic, which checks if the time limit has been reached
 		while (!hasTimeExpired()) {
 

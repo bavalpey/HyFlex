@@ -16,7 +16,7 @@ public class BranchingRun1 {
 
 	public static void main(String[] args) {
 		ProblemDomain problem = null;
-		String filename1 = "V1_data/7branch";
+		String filename1 = "V1_data/branch";
 		int filecounter = 1;
 		String filename;
 		//create a ProblemDomain object with a seed for the random number generator
@@ -33,7 +33,7 @@ public class BranchingRun1 {
 	
 			
 			int n = rand.nextInt(999) + 1;
-			HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic(n,filename,7);
+			HyperHeuristic hyper_heuristic_object = new BranchingHyperHeuristic4(n,filename,5);
 			filename = null;
 			//we must load an instance within the problem domain, in this case we choose instance 2
 			problem.loadInstance(9);

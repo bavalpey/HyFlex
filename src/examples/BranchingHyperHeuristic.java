@@ -46,10 +46,14 @@ public class BranchingHyperHeuristic extends HyperHeuristic {
 		
 		double score1, score2, score3;
 		randH1 = rng.nextInt(number_of_heuristics);
-		while (randH1 == randH2 || randH2 == -1) {
+		while(randH1 == 8 || randH1 == 9 || randH1 == 10) { // ignore crossover heuristics
+			randH1 = rng.nextInt(number_of_heuristics);
+		}
+		
+		while (randH1 == randH2 || randH2 == -1 || randH2 == 8 || randH2 == 9 || randH2 == 10) {
 			randH2 = rng.nextInt(number_of_heuristics);
 		}
-		while (randH1 == randH3 || randH2 == randH3|| randH3 == -1) {
+		while (randH1 == randH3 || randH2 == randH3|| randH3 == -1 || randH3 == 8 || randH3 == 9 || randH3 == 10) {
 			randH3 = rng.nextInt(number_of_heuristics);
 		}
 		int pos1 = currentMemoryIndex;

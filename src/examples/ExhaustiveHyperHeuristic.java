@@ -2,9 +2,6 @@ package examples;
 
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 public class ExhaustiveHyperHeuristic extends HyperHeuristic {

@@ -42,6 +42,9 @@ public class OnlineHyperHeuristic extends HyperHeuristic{
 		int cnt = 0;
 		while (cnt < 5){
 			int heuristic_to_apply = getHeuristicFromRandomNumber(rng.nextInt(cap),h);
+			while(heuristic_to_apply == 8 || heuristic_to_apply == 9 || heuristic_to_apply == 10) {
+				heuristic_to_apply = getHeuristicFromRandomNumber(rng.nextInt(cap),h);
+			}
 			double new_obj_function_value = problem.applyHeuristic(heuristic_to_apply, 0, 1);
 			
 			double delta = current_obj_function_value - new_obj_function_value;

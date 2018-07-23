@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import AbstractClasses.HyperHeuristic;
 import AbstractClasses.ProblemDomain;
 import PersonnelScheduling.PersonnelScheduling;
+import SAT.SAT;
 
 /**
  * This class shows how to run a selected hyper-heuristic on a selected problem domain.
@@ -21,7 +22,7 @@ public class AllHeuristicsRun {
 		
 		PrintWriter pw = null;
 		try {
-			pw = new PrintWriter("V1_Data/Heuristic_Results5levels.csv");
+			pw = new PrintWriter("V1_Data/Heuristic_Results5levels3.csv");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -31,6 +31,9 @@ public class RandomHyperHeuristic extends HyperHeuristic {
 
 			//this hyper-heuristic chooses a random low level heuristic to apply
 			int heuristic_to_apply = rng.nextInt(number_of_heuristics);
+			while(heuristic_to_apply == 8 || heuristic_to_apply == 9 || heuristic_to_apply == 10) {
+				heuristic_to_apply = rng.nextInt(number_of_heuristics);
+			}
 			problem.applyHeuristic(heuristic_to_apply, 0, 1);
 
 			problem.copySolution(1, 0);

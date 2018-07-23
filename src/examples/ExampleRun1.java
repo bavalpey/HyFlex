@@ -1,4 +1,6 @@
 package examples;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Random;
 
 import AbstractClasses.HyperHeuristic;
@@ -18,13 +20,13 @@ public class ExampleRun1 {
 		ProblemDomain problem = new PersonnelScheduling(1234);
 
 		//creates an ExampleHyperHeuristic object with a seed for the random number generator
-		HyperHeuristic hyper_heuristic_object = new LearningHyperHeuristic((int) rand.nextInt(999) + 1);
+		HyperHeuristic hyper_heuristic_object = new OnlineHyperHeuristic((int) rand.nextInt(999) + 1);
 
 		//we must load an instance within the problem domain, in this case we choose instance 2
-		problem.loadInstance(9);
+		problem.loadInstance(2);
 
 		//we must set the time limit for the hyper-heuristic in milliseconds, in this example we set the time limit to 1 minute
-		hyper_heuristic_object.setTimeLimit(600000);
+		hyper_heuristic_object.setTimeLimit(60000);
 
 		//a key step is to assign the ProblemDomain object to the HyperHeuristic object. 
 		//However, this should be done after the instance has been loaded, and after the time limit has been set
@@ -36,6 +38,16 @@ public class ExampleRun1 {
 
 		//obtain the best solution found within the time limit
 		System.out.println(hyper_heuristic_object.getBestSolutionValue());
+		
+		PrintWriter pw = null;
+		try {
+			pw = new PrintWriter("V1_Data/bestLearning.html");
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		pw.write(problem.bestSolutionToString());
 		
 	}
 }

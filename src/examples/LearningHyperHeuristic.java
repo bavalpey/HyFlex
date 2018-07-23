@@ -40,6 +40,9 @@ public class LearningHyperHeuristic extends HyperHeuristic {
 			int count = 0;
 			while(count < 3) {
 				int heuristic_to_apply = rng.nextInt(number_of_heuristics);
+//				while(heuristic_to_apply == 8 || heuristic_to_apply == 9 || heuristic_to_apply == 10) {
+//					heuristic_to_apply = rng.nextInt(number_of_heuristics);
+//				}
 				double new_obj_function_value = problem.applyHeuristic(heuristic_to_apply, 0, 1);
 				double delta = current_obj_function_value - new_obj_function_value;
 				
